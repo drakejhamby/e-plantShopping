@@ -1,55 +1,68 @@
-/* LandingPage.css */
+/* Landing page */
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
-  overflow: hidden;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+  background-color: #0f1a12;
+}
+
+.app-container {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
 }
 
 .landing-page {
   position: relative;
-  width: 100vw;
-  height: 100vh;
-  background-color: #f8f8f8;
+  min-height: 100vh;
+  width: 100%;
+  overflow: visible;
 }
 
 .background-image {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background-image: url('https://cdn.pixabay.com/photo/2017/07/13/08/59/greenhouse-2499758_1280.jpg');
-  background-size: 100% 100%;
+  background-size: cover;
   background-position: center;
-  filter: brightness(0.8);
+  filter: brightness(0.65);
 }
+
 .content {
-  display: flex;
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(280px, 0.85fr) minmax(320px, 1.15fr);
   align-items: center;
-  justify-content: center;
-  height: 100vh;
-  width: 100vw;
- top: 100px;
-  backdrop-filter: blur(4px);
-  background-color: rgba(0,0,0,0.5);
-  gap: 20px;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  padding: clamp(2rem, 6vw, 5rem);
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.35));
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
 }
 
 .landing_content {
- margin-top: 430px;
-  margin-left: 100px;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-  text-align: center;
-  /* background-color: red; */
-  width: 400px;
-  height: 400px;
+  max-width: 28rem;
   display: flex;
-  align-items: center;
   flex-direction: column;
-  justify-content: center;
-  gap: 10px;
+  align-items: flex-start;
+  gap: 0.85rem;
+  margin: 0;
+  transform: none;
+  text-align: left;
 }
 
 .content p,
@@ -58,90 +71,97 @@
 }
 
 .content h1 {
-  font-size: 48px;
-  margin-bottom: 10px;
+  font-size: clamp(2.5rem, 4.5vw, 4.25rem);
+  line-height: 0.98;
+  margin: 0;
+  max-width: 10ch;
 }
 
 .content p {
-  font-size: 25px;
+  font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+  margin: 0;
 }
 
 .divider {
-  width: 50px;
+  width: 56px;
   height: 2px;
-  background-color: #4caf50;
-  margin: 10px 0;
+  background-color: #6fd36d;
+  margin: 0.5rem 0 0.25rem;
 }
 
 .get-started-button {
-  padding: 15px 25px;
-  font-size: 23px;
+  margin-top: 1rem;
+  padding: 0.95rem 1.55rem;
+  font-size: 1.05rem;
   border: none;
-  border-radius: 5px;
+  border-radius: 0.6rem;
   background-color: #4caf50;
   color: white;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 40px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .get-started-button:hover {
   background-color: #45a049;
+  transform: translateY(-1px);
 }
 
-/* ProductList.css */
+.aboutus_container {
+  width: 100%;
+  max-width: 44rem;
+  justify-self: end;
+}
 
+/* Product list overlay */
 .product-list-container {
-  position: absolute;
-  overflow-x: hidden;
-  top: 100vh;
-  /* Initially off-screen */
-  left: 0;
+  position: fixed;
+  inset: 0;
+  transform: translateY(100%);
   width: 100%;
   height: 100vh;
-  background-color: rgba(255, 255, 255, 0.9);
-  /* Adjust background opacity as needed */
-  transition: top 0.5s ease;
-  /* Smooth transition for top property */
+  background-color: rgba(255, 255, 255, 0.96);
+  transition: transform 0.45s ease;
   overflow-y: auto;
-  /* Enable vertical scrolling */
+  overflow-x: hidden;
   z-index: 2;
-  /* Ensure it's above landing page content */
+  -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
 }
 
 .product-list-container.visible {
-  top: 0;
+  transform: translateY(0);
 }
-/* LandingPage.css */
-@media screen and (max-width: 768px) {
-  .content {
-    flex-direction: column;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
-  }
 
-  .landing_content {
-    margin-top: 100px; /* Adjust as needed */
-    margin-left: 0;
-    width: 80%; /* Adjust as needed */
+@media screen and (max-width: 900px) {
+  .content {
+    grid-template-columns: 1fr;
+    align-content: center;
     text-align: center;
   }
 
+  .landing_content {
+    align-items: center;
+    justify-self: center;
+    max-width: 40rem;
+  }
+
   .aboutus_container {
-    margin-top: 20px; /* Adjust as needed */
-    width: 80%; /* Adjust as needed */
+    justify-self: center;
+    max-width: 40rem;
   }
 }
 
-@media screen and (max-width: 480px) {
-  .landing_content {
-    margin-top: 50px; /* Adjust as needed */
-    width: 90%; /* Adjust as needed */
+@media screen and (max-width: 560px) {
+  .content {
+    padding: 1.5rem;
+    gap: 1.5rem;
   }
 
-  .aboutus_container {
-    width: 90%; /* Adjust as needed */
+  .content h1 {
+    max-width: none;
+  }
+
+  .landing_content {
+    max-width: none;
   }
 }
